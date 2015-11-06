@@ -1,6 +1,7 @@
 package shoppingCart;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class LineitemJB implements Serializable{
 	private long lineitemId;
@@ -9,6 +10,7 @@ public class LineitemJB implements Serializable{
 	private double price;
 	private int  quantity;
 	private double unitPrice;
+	 private ArrayList<LineitemJB> lineitemList = new ArrayList<LineitemJB>();
 	public long getLineitemId() {
 		return lineitemId;
 	}
@@ -50,6 +52,12 @@ public class LineitemJB implements Serializable{
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public ArrayList<LineitemJB> getLineitemList() {
+		return lineitemList;
+	}
+	public void setLineitemList(ArrayList<LineitemJB> lineitemList) {
+		this.lineitemList = lineitemList;
 	}
 	private String date;
 

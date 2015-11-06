@@ -37,13 +37,16 @@ public class TheShoppingCart extends HttpServlet {
 		EntityManager em = shoppingCart.DBUtil.getEmFactory().createEntityManager();
 		String strProductId = 	request.getParameter("productId");
 		Long productid = Long.parseLong(strProductId);
-	
+	    
 		
 		
 		ProductDB productdb= new ProductDB();
 		Product selectedProduct = productdb.selectProductID(productid );
-
-		
+		//selectedProduct.getProductDate();
+		//selectedProduct.getProductDescription();
+		//selectedProduct.getProductPrice();
+		//selectedProduct.getProductName();
+		//selectedProduct.getProductId();
 
 		request.setAttribute("selectedProduct", selectedProduct);
 		

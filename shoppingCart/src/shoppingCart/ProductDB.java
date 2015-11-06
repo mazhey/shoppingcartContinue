@@ -52,7 +52,7 @@ public class ProductDB {
 		}
 	public static Product selectProductID(Long productid){
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String qString = "select p from Product p where p.product_id = :productid";
+		String qString = "select p from Product p where p.productId = :productid";
 		TypedQuery<Product> q = em.createQuery(qString, Product.class);
 		q.setParameter("productid", productid);
 		Product product = null;

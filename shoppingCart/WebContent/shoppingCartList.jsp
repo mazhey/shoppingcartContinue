@@ -29,7 +29,7 @@
             <span class="icon-bar"></span>
           </button>
           
-          <a class="navbar-brand">Selected Products </a> 
+          <a class="navbar-brand">Lineitems List </a> 
            
               
         </div>
@@ -41,8 +41,6 @@
 <div class="panel panel-default">
 
   <div class="panel-body">
-  <form action = "decisionShopping" method= "get">
-  <input type="hidden" name="action" value="Add">
 		<table class="table table-striped">
 <thead>
 
@@ -54,27 +52,22 @@
 			</tr>
 </thead>
 <tbody>
+<c:forEach var="p" items="${MyshoppingCart}">
 <tr>
-				<td>${selectedProduct.getProductId()}</td>
-				<td>${selectedProduct.getProductName()}</td>
-				<td>${selectedProduct.getProductPrice()}</td>
-				<td><input type = "text" size=2 value = "1" name ="quantity"></td>
+			    <td>${p.productName}</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
 			</tr>
 
-
+</c:forEach>
 </tbody>
 		</table>
 		
+	
 
-
-  <input type = "hidden" value = "${selectedProduct.getProductId()}" name ="productID">
-  <input type = "hidden" value = "${selectedProduct.getProductName()}" name ="productName">
-   <input type = "hidden" value = "${selectedProduct.getProductPrice()}" name ="productPrice">
- <input type = "hidden" value = "${selectedProduct.getProductDate()}" name ="productDate">
- <input type = "hidden" value = "${selectedProduct.getProductDescription()}" name ="productDescription">
-  
-  <button type="submit" class="btn btn-info">Add</button>
-  </form>	
+  <a href = "#" class="btn btn-info">Continue</a>
+ 	
   </div>
   </div>
   </div>
@@ -92,3 +85,4 @@
 		crossorigin="anonymous"></script>
    
 </body>
+</html>
