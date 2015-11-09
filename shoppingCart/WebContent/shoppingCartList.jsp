@@ -45,29 +45,33 @@
 <thead>
 
 			<tr>
-			     <th>ProductID</th>
+			  
 				<th>ProductName</th>
 				<th>UnitPrice</th>
 		         <th>Quantity</th>
+		          <th>Subtotal</th>
 			</tr>
 </thead>
 <tbody>
 <c:forEach var="p" items="${MyshoppingCart}">
-<tr>
-			    <td>${p.productName}</td>
-				<td>""</td>
-				<td>""</td>
-				<td>""</td>
+             <tr>
+			    <td>${p.productname}</td>
+				<td>${p.unitPrice}</td>
+				<td>${p.quantity}</td>
+			    <td>${p.price}</td>
 			</tr>
-
+			
 </c:forEach>
+              
+
 </tbody>
 		</table>
 		
-	
+<label>Total:</label><c:out value="${GrandTotal}" />
+<br>
 
-  <a href = "#" class="btn btn-info">Continue</a>
- 	
+  <a href = "ShopCartServlet" class="btn btn-info">Continue</a>
+ <a href = "#" class="btn btn-info">Checkout</a>
   </div>
   </div>
   </div>

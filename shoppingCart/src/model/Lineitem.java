@@ -1,9 +1,7 @@
 package model;
 
 import java.io.Serializable;
-
 import javax.persistence.*;
-
 import java.math.BigDecimal;
 
 
@@ -12,34 +10,35 @@ import java.math.BigDecimal;
  * 
  */
 @Entity
-@Table (name="LINEITEM", schema="TESTUSERDB")
+@Table(name="LINEITEM",schema="TESTUSERDB")
+
 @NamedQuery(name="Lineitem.findAll", query="SELECT l FROM Lineitem l")
 public class Lineitem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="LINEITEM_LINEITEMID_GENERATOR",sequenceName="SEQ_LINEITEM",allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="LINEITEM_LINEITEMID_GENERATOR")
 	@Column(name="LINEITEM_ID")
 	private long lineitemId;
 
 	@Column(name="PRODUCT_DATE")
 	private String productDate;
 
+	@Column(name="PRODUCT_ID")
+	private int productId;
+
 	@Column(name="PRODUCT_NAME")
 	private String productName;
 
 	@Column(name="PRODUCT_PRICE")
-	private BigDecimal productPrice;
+	private double productPrice;
 
 	@Column(name="PRODUCT_QUANTITY")
-	private BigDecimal productQuantity;
+	private int productQuantity;
 
 	@Column(name="PRODUCT_UNITPRICE")
-	private BigDecimal productUnitprice;
-
-	//bi-directional many-to-one association to Product
-	@ManyToOne
-	@JoinColumn(name="PRODUCT_ID")
-	private Product product;
+	private double productUnitprice;
 
 	public Lineitem() {
 	}
@@ -60,6 +59,14 @@ public class Lineitem implements Serializable {
 		this.productDate = productDate;
 	}
 
+	public int getProductId() {
+		return this.productId;
+	}
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
 	public String getProductName() {
 		return this.productName;
 	}
@@ -68,36 +75,28 @@ public class Lineitem implements Serializable {
 		this.productName = productName;
 	}
 
-	public BigDecimal getProductPrice() {
+	public double getProductPrice() {
 		return this.productPrice;
 	}
 
-	public void setProductPrice(BigDecimal productPrice) {
+	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
 	}
 
-	public BigDecimal getProductQuantity() {
+	public int getProductQuantity() {
 		return this.productQuantity;
 	}
 
-	public void setProductQuantity(BigDecimal productQuantity) {
+	public void setProductQuantity(int productQuantity) {
 		this.productQuantity = productQuantity;
 	}
 
-	public BigDecimal getProductUnitprice() {
+	public double getProductUnitprice() {
 		return this.productUnitprice;
 	}
 
-	public void setProductUnitprice(BigDecimal productUnitprice) {
+	public void setProductUnitprice(double productUnitprice) {
 		this.productUnitprice = productUnitprice;
-	}
-
-	public Product getProduct() {
-		return this.product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
 	}
 
 }

@@ -54,7 +54,7 @@
 			</tr>
 </thead>
 <tbody>
-<tr>
+           <tr>
 				<td>${selectedProduct.getProductId()}</td>
 				<td>${selectedProduct.getProductName()}</td>
 				<td>${selectedProduct.getProductPrice()}</td>

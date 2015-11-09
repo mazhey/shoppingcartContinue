@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 
 /**
@@ -13,12 +12,14 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="PRODUCT", schema="TESTUSERDB")
+@Table(name="PRODUCT",schema="TESTUSERDB")
 @NamedQuery(name="Product.findAll", query="SELECT p FROM Product p")
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name="PRODUCT_PRODUCTID_GENERATOR",sequenceName="SEQ_PRODUCT",allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="PRODUCT_PRODUCTID_GENERATOR")
 	@Column(name="PRODUCT_ID")
 	private long productId;
 
@@ -33,10 +34,6 @@ public class Product implements Serializable {
 
 	@Column(name="PRODUCT_PRICE")
 	private BigDecimal productPrice;
-
-	//bi-directional many-to-one association to Lineitem
-	@OneToMany(mappedBy="product")
-	private List<Lineitem> lineitems;
 
 	public Product() {
 	}
@@ -79,28 +76,6 @@ public class Product implements Serializable {
 
 	public void setProductPrice(BigDecimal productPrice) {
 		this.productPrice = productPrice;
-	}
-
-	public List<Lineitem> getLineitems() {
-		return this.lineitems;
-	}
-
-	public void setLineitems(List<Lineitem> lineitems) {
-		this.lineitems = lineitems;
-	}
-
-	public Lineitem addLineitem(Lineitem lineitem) {
-		getLineitems().add(lineitem);
-		lineitem.setProduct(this);
-
-		return lineitem;
-	}
-
-	public Lineitem removeLineitem(Lineitem lineitem) {
-		getLineitems().remove(lineitem);
-		lineitem.setProduct(null);
-
-		return lineitem;
 	}
 
 }
